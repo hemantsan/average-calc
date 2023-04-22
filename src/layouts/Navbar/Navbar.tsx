@@ -76,7 +76,7 @@ export default function Navbar() {
         <Container py={{ base: '4' }} maxW='xxl'>
           <HStack spacing='10' justify='space-between'>
             <HStack justify='space-between'>
-              <img src='logo.png' />
+              <img src='logo.png' className='top-navbar__logo' />
               <b style={{ color: '#3182ce' }}>Average Calc</b>
             </HStack>
 
