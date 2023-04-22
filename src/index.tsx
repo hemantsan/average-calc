@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/average-calc/',
     element: <App />,
     errorElement: <ErrorPage />,
     id: 'root',
