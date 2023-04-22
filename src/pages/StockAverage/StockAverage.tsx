@@ -1,12 +1,12 @@
 import { Input, SimpleGrid } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/react';
+import { Button, ButtonGroup } from '@chakra-ui/react';
 
 export default function StockAverage() {
   return (
     <section className='site-section'>
-      <SimpleGrid minChildWidth='120px' columns={4} spacing={10}>
+      <SimpleGrid spacingY='10px' columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
         <Box>
           <FormControl mb={5}>
             <FormLabel>First Transcation Qty</FormLabel>
@@ -33,11 +33,15 @@ export default function StockAverage() {
         </Box>
       </SimpleGrid>
 
-      <SimpleGrid  minChildWidth='120px' columns={4} spacing={10}>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
         <Box>
-          <Button colorScheme='teal' size='md'>
+          <ButtonGroup gap='4'>
+            <Button colorScheme='teal'>Calculate Average</Button>
+            <Button>Clear Inputs</Button>
+          </ButtonGroup>
+          {/* <Button colorScheme='teal' size='md'>
             Calculate Average
-          </Button>
+          </Button> */}
         </Box>
       </SimpleGrid>
     </section>
