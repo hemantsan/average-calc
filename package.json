@@ -1,6 +1,6 @@
 {
-  "homepage": "https://vieckys.github.io/average-calc/",
   "name": "average-calc",
+  "homepage": "https://vieckys.github.io/average-calc/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
