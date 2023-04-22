@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/average-calc/static/css/main.4d75bb92.css",
+    "main.js": "/average-calc/static/js/main.24ea9503.js",
+    "static/js/787.fc8dc07a.chunk.js": "/average-calc/static/js/787.fc8dc07a.chunk.js",
+    "service-worker.js": "/average-calc/service-worker.js",
+    "index.html": "/average-calc/index.html",
+    "main.4d75bb92.css.map": "/average-calc/static/css/main.4d75bb92.css.map",
+    "main.24ea9503.js.map": "/average-calc/static/js/main.24ea9503.js.map",
+    "787.fc8dc07a.chunk.js.map": "/average-calc/static/js/787.fc8dc07a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d75bb92.css",
+    "static/js/main.24ea9503.js"
+  ]
+}
