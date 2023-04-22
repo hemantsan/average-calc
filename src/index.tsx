@@ -1,16 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { ChakraProvider } from '@chakra-ui/react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import StockAverage from './pages/StockAverage/StockAverage';
+import CryptoAverage from './pages/CryptoAverage/CryptoAverage';
+import ErrorPage from './pages/ErrorPage';
+import { json } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <ErrorPage />,
+    id: 'root',
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+        handle: {
+          title: 'Home',
+        },
+      },
+      {
+        path: '/stock-average',
+        element: <StockAverage />,
+        handle: {
+          title: 'Stock Average',
+        },
+      },
+      {
+        path: '/crypto-average',
+        element: <CryptoAverage />,
+        handle: {
+          title: 'Crypto Average',
+        },
+      },
+    ],
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   </React.StrictMode>
 );
 
