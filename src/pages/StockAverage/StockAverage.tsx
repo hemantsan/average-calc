@@ -9,13 +9,16 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  Grid,
+  GridItem,
+  Badge,
 } from '@chakra-ui/react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 
 interface IStockAverage {
-  firstQty?: number;
+  firstQty?: number | undefined;
   firstPrice?: number;
   secondQty?: number;
   secondPrice?: number;
@@ -29,10 +32,10 @@ export default function StockAverage() {
   const toast = useToast();
 
   const [state, setState] = useState<IStockAverage>({
-    firstQty: 0,
-    firstPrice: 0,
-    secondQty: 0,
-    secondPrice: 0,
+    firstQty: undefined,
+    firstPrice: undefined,
+    secondQty: undefined,
+    secondPrice: undefined,
     averagePrice: 0,
     totalAmount: 0,
     totalQty: 0,
@@ -68,10 +71,10 @@ export default function StockAverage() {
 
   const resetFields = () => {
     setState({
-      firstQty: 0,
-      firstPrice: 0,
-      secondQty: 0,
-      secondPrice: 0,
+      firstQty: undefined,
+      firstPrice: undefined,
+      secondQty: undefined,
+      secondPrice: undefined,
       averagePrice: 0,
       totalAmount: 0,
       totalQty: 0,
@@ -81,95 +84,127 @@ export default function StockAverage() {
 
   return (
     <section className='site-section'>
-      <SimpleGrid spacingY='10px' columns={{ base: 1, md: 3, lg: 3 }} spacing={10}>
-        <Box>
-          <h5>First Transaction</h5>
-          <FormControl mb={5}>
-            <FormLabel>Quantity</FormLabel>
-            <Input
-              type='number'
-              value={state?.firstQty}
-              onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setState({ ...state, firstQty: Number(e.target.value) })
-              }
-            />
-          </FormControl>
-          <FormControl mb={5}>
-            <FormLabel>Price per share</FormLabel>
-            <Input
-              type='number'
-              value={state?.firstPrice}
-              onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setState({ ...state, firstPrice: Number(e.target.value) })
-              }
-            />
-          </FormControl>
-        </Box>
-        <Box>
-          <h5>Second Transaction</h5>
-          <FormControl mb={5}>
-            <FormLabel>Quantity</FormLabel>
-            <Input
-              type='number'
-              value={state?.secondQty}
-              onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setState({ ...state, secondQty: Number(e.target.value) })
-              }
-            />
-          </FormControl>
-          <FormControl mb={5}>
-            <FormLabel>Price per share</FormLabel>
-            <Input
-              type='number'
-              value={state?.secondPrice}
-              onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setState({ ...state, secondPrice: Number(e.target.value) })
-              }
-            />
-          </FormControl>
-        </Box>
-        {state.isResult && (
-          <Box>
-            <Card>
-              <CardHeader>
-                <Heading size='md'>Result</Heading>
-              </CardHeader>
+      <Grid
+        templateColumns={{
+          base: 'repeat(1, 1fr)',
+          md: 'repeat(3, 1fr)',
+          lg: 'repeat(3, 1fr)',
+        }}
+        gap={{
+          base: 0,
+          sm: 5,
+        }}
+        rowGap={{
+          base: 5,
+          sm: 5,
+        }}>
+        <GridItem colSpan={2}>
+          <SimpleGrid spacingY='10px' columns={{ base: 2, md: 2, lg: 2 }} spacing={10}>
+            <Box>
+              <Badge marginBottom={{ base: 3 }}>First Transaction</Badge>
+              <FormControl mb={3}>
+                <FormLabel>Quantity</FormLabel>
+                <Input
+                  type='number'
+                  value={state?.firstQty}
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setState({ ...state, firstQty: Number(e.target.value) })
+                  }
+                />
+              </FormControl>
+              <FormControl mb={3}>
+                <FormLabel>Price per share</FormLabel>
+                <Input
+                  type='number'
+                  value={state?.firstPrice}
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setState({ ...state, firstPrice: Number(e.target.value) })
+                  }
+                />
+              </FormControl>
+            </Box>
 
-              <CardBody>
-                <Stack divider={<StackDivider />} spacing='4'>
-                  <Box>
-                    <Heading size='xs' textTransform='uppercase'>
-                      Total Quanity
-                    </Heading>
-                    <Text pt='2' fontSize='sm'>
-                      {state.totalQty}
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Heading size='xs' textTransform='uppercase'>
-                      Average Price Per Share
-                    </Heading>
-                    <Text pt='2' fontSize='sm'>
-                      {state.averagePrice}
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Heading size='xs' textTransform='uppercase'>
-                      Total Amount
-                    </Heading>
-                    <Text pt='2' fontSize='sm'>
-                      {state.totalAmount}
-                    </Text>
-                  </Box>
-                </Stack>
-              </CardBody>
-            </Card>
+            <Box>
+              <Badge marginBottom={{ base: 3 }}>Second Transaction</Badge>
+              <FormControl mb={3}>
+                <FormLabel>Quantity</FormLabel>
+                <Input
+                  type='number'
+                  value={state?.secondQty}
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setState({ ...state, secondQty: Number(e.target.value) })
+                  }
+                />
+              </FormControl>
+              <FormControl mb={3}>
+                <FormLabel>Price per share</FormLabel>
+                <Input
+                  type='number'
+                  value={state?.secondPrice}
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setState({ ...state, secondPrice: Number(e.target.value) })
+                  }
+                />
+              </FormControl>
+            </Box>
+          </SimpleGrid>
+        </GridItem>
+        <GridItem>
+          <Box>
+            {state.isResult && (
+              <Box>
+                <Card>
+                  <CardHeader padding={{ base: 0 }}>
+                    <Badge marginBottom={{ base: 3 }} size='md'>
+                      Result
+                    </Badge>
+                  </CardHeader>
+
+                  <CardBody>
+                    <Stack divider={<StackDivider />} spacing='4'>
+                      <Box>
+                        <Heading size='xs' textTransform='uppercase'>
+                          Total Quanity
+                        </Heading>
+                        <Text pt='2' fontSize='sm'>
+                          {state.totalQty}
+                        </Text>
+                      </Box>
+                      <Box>
+                        <Heading size='xs' textTransform='uppercase'>
+                          Average Price Per Share
+                        </Heading>
+                        <Text pt='2' fontSize='sm'>
+                          {state.averagePrice}
+                        </Text>
+                      </Box>
+                      <Box>
+                        <Heading size='xs' textTransform='uppercase'>
+                          Total Amount
+                        </Heading>
+                        <Text pt='2' fontSize='sm'>
+                          {state.totalAmount}
+                        </Text>
+                      </Box>
+                    </Stack>
+                  </CardBody>
+                </Card>
+              </Box>
+            )}
           </Box>
-        )}
-      </SimpleGrid>
+        </GridItem>
+      </Grid>
 
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
-        <Box>
+        <Box
+          marginTop={{
+            base: 1,
+            sm: 8,
+          }}
+          marginBottom={{
+            base: 8,
+            sm: 0,
+          }}>
           <ButtonGroup gap='4'>
             <Button colorScheme='teal' onClick={handleCalculate}>
               Calculate Average

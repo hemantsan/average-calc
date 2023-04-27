@@ -3,6 +3,7 @@ import { Container } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 import { useMatches } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '@chakra-ui/react';
+import BottomNav from './layouts/BottomNav/BottomNav';
 
 export default function App() {
   const routerMatch: any = useMatches();
@@ -22,6 +23,7 @@ export default function App() {
           </BreadcrumbItem>
         </Breadcrumb>
         <Outlet />
+        <BottomNav />
       </Container>
     </main>
   );
